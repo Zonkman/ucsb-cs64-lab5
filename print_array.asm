@@ -14,13 +14,17 @@
 
 .text
 printA:
+	#save $a0...
+	move $t4, $a0
 	#iterator
 	add $t0, $zero, $zero
 	#limit
-	lw $t1, alength($zero)
+	move $t1, $a1
 	sll $t1, $t1, 2
+
 printA_loop:
-	lw $a0, arr($t0)
+	add $t2, $t0, $t4
+	lw $a0, 0($t2)
 	li $v0, 1
 	syscall
 
@@ -38,6 +42,9 @@ main:
 	li $v0, 4
 	la $a0, msg_content
 	syscall
+
+	la $a0, arr
+	lw $a1, alength($zero)
 
 	jal printA
 
