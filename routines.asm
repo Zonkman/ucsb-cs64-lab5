@@ -7,18 +7,16 @@
 
 .text
 routineB:
-	addi $sp, $sp, -12
+	addi $sp, $sp, -8
 	sw $s0, 0($sp)
-	sw $s1, 4($sp)
-	sw $ra, 8($sp)
+	sw $ra, 4($sp)
 
 	addi $s0, $a0, -5
 	sll $v0, $s0, 2
 
 	lw $s0, 0($sp)
-	lw $s1, 4($sp)
-	lw $ra, 8($sp)
-	addi $sp, $sp, 12
+	lw $ra, 4($sp)
+	addi $sp, $sp, 8
 	jr $ra
 
 routineA:
